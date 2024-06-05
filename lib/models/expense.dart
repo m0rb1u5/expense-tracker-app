@@ -12,7 +12,7 @@ enum Category {
   work,
 }
 
-const Map<Category, IconData> categoryIcons ={
+const Map<Category, IconData> categoryIcons = {
   Category.food: Icons.lunch_dining,
   Category.travel: Icons.flight_takeoff,
   Category.leisure: Icons.movie,
@@ -41,6 +41,11 @@ class ExpenseBucket {
     required this.category,
     required this.expenses,
   });
+
+  ExpenseBucket.forCategory(List<Expense> allExpenses, this.category)
+      : expenses = allExpenses
+            .where((expense) => expense.category == category)
+            .toList();
 
   final Category category;
   final List<Expense> expenses;
